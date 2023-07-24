@@ -3,14 +3,20 @@ import "./app.css";
 import { render } from "react-dom";
 import { colors } from "./colors";
 
+const sharedStyles = css`
+  border: 1px solid currentColor;
+  border-radius: 2rem;
+  list-style-type: none;
+`;
+
 export const Component = ({ color }: { color: string }) => (
   <li
-    css={css`
-      color: ${color};
-      border: 1px solid currentColor;
-      border-radius: 2rem;
-      list-style-type: none;
-    `}
+    css={[
+      sharedStyles,
+      css`
+        color: ${color};
+      `,
+    ]}
   >
     {color}
   </li>
