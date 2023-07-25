@@ -1,13 +1,15 @@
 import { css } from "@emotion/react";
-import "./app.css";
-import { render } from "react-dom";
-import { colors } from "./colors";
+import createCache from "@emotion/cache";
+import { colors } from "./values";
+import { inject } from "./inject";
 
 const sharedStyles = css`
   border: 1px solid currentColor;
   border-radius: 2rem;
   list-style-type: none;
 `;
+
+const cache = createCache({ key: "mixed" });
 
 export const Component = ({ color }: { color: string }) => (
   <li
@@ -42,4 +44,4 @@ const App = () => {
   );
 };
 
-render(<App />, document.getElementById("app")!);
+inject(cache, App);
