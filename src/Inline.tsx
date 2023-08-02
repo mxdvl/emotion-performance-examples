@@ -1,20 +1,13 @@
 import { css } from "@emotion/react";
 import createCache from "@emotion/cache";
-import { colors, weights } from "./values";
+import { colors } from "./values";
 import { inject } from "./inject";
 
 const cache = createCache({ key: "inline" });
 
-export const Component = ({
-  color,
-  weight,
-}: {
-  color: string;
-  weight: number;
-}) => (
+export const Component = ({ color }: { color: string }) => (
   <li
     css={css`
-      font-weight: ${weight};
       color: ${color};
       border: 1px solid currentColor;
       border-radius: 2rem;
@@ -38,11 +31,7 @@ const App = () => {
         `}
       >
         {Array.from({ length: 10_000 }, (_, i) => (
-          <Component
-            key={i}
-            color={colors[i % colors.length]}
-            weight={weights[i % weights.length]}
-          ></Component>
+          <Component key={i} color={colors[i % colors.length]}></Component>
         ))}
       </ul>
     </>
